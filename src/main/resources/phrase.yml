@@ -1,0 +1,21 @@
+Command_Not_Find: "&cCommand not find! Please type ''/worldgifts help'' for help."
+No_Premission: "&cYou don't have this permission!"
+Args_Incorrect: "&cPlease type ''/worldgifts help'' to see how to use this command."
+Only_Player_Cmd: "&cThis command only can player to use."
+
+Plugin_Reloaded: "&aPlugin reloaded!"
+
+GET_GIFT: "&dWelcome! Here is you gift!"
+
+Item_Added: "&aItem successful to added!"
+Item_Remove: "&aItem successful to &cremove&a!"
+World_No_Data: "&cThis world haven't added to this plugin!"
+World_No_Item: "&cThis world haven't added items!"
+
+Help:
+  Cmd_PluginInfo: "&7WorldGifts info."
+  Cmd_Help: "&7WorldGifts help."
+  Cmd_List: "&7List all world items."
+  Cmd_Put: "&7Put a item to world"
+  Cmd_Remove: "&7Remove a item from world"
+  Cmd_Reload: "&7Reload WorldGifts"

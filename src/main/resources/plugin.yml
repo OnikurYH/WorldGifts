@@ -1,0 +1,39 @@
+name: WorldGifts
+main: com.tanpn.worldgifts.WorldGifts
+version: 0.4
+
+commands:
+  worldgifts:
+    description: "WorldGifts command."
+    usage: /<command>
+    permission: worldgifts.info
+    permission-message: "You don't have <permission>"
+          
+permissions:
+  worldgifts.*:
+      description: Gives access to all WorldGifts commands
+      children:
+          worldgifts.plugininfo: true
+          worldgifts.help: true
+          worldgifts.list: true
+          worldgifts.put: true
+          worldgifts.remove: true
+          worldgifts.reload: true
+  worldgifts.plugininfo:
+      description: Allows you to see this plugin info
+      default: true
+  worldgifts.help:
+      description: Allows you to see this plugin help
+      default: op
+  worldgifts.list:
+      description: Allows you to see world items
+      default: op
+  worldgifts.put:
+      description: Allows you to add item to world
+      default: op
+  worldgifts.remove:
+      description: Allows you to remove item to world
+      default: op
+  worldgifts.reload:
+      description: Allows you to reload this plugin
+      default: op
