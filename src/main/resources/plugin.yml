@@ -32,7 +32,7 @@ permissions:
       description: Allows you to add item to world
       default: op
   worldgifts.remove:
-      description: Allows you to remove item to world
+      description: Allows you to remove item from world
       default: op
   worldgifts.reload:
       description: Allows you to reload this plugin
