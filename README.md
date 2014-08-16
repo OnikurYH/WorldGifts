@@ -1,16 +1,13 @@
 #WorldGifts
-####Let your bukkit auto give player a gift on first join.
-- - -
+> Let your bukkit auto give player a gift on first join.
 This plugin can let your server auto to give gifts to player when they are first to join.
 
 ##Features
-- - -
 * Easy to install and use
 * Multi world support
 * Work with some lore edit plugins (e.g. Lore, CrackShot)
 
 ##Commands
-- - -
     /worldgifts - About WorldGifts plugin
     /worldgifts help - WorldGifts Help
     /worldgifts list <world> - List all gift on this world
@@ -19,7 +16,6 @@ This plugin can let your server auto to give gifts to player when they are first
     /worldgifts reload - Reload this plugin
     
 ##Permission
-- - -
     worldgifts.* - Gives access to all WorldGifts commands
     worldgifts.plugininfo - Allows you to see this plugin info
     worldgifts.help - Allows you to see this plugin help
@@ -29,7 +25,6 @@ This plugin can let your server auto to give gifts to player when they are first
     worldgifts.reload - Allows you to reload this plugin
     
 ##Examples
-- - -
 You have 2 world in the server -- mainworld and activity.
 
 When player first join the server in mainworld, they will have 3 diamonds.
@@ -43,7 +38,6 @@ Also, when a player get in to activity, the will receive 1 iron sword and rename
 5. Type /worldgifts put activity
 
 ##Developmant
-- - -
 Project Developer : OnikurChan (TsnYikHei)
 
 We are use Eclipse [https://www.eclipse.org](https://www.eclipse.org "Title") and
@@ -51,7 +45,6 @@ We are use Eclipse [https://www.eclipse.org](https://www.eclipse.org "Title") an
 m2e Maven [https://www.eclipse.org/m2e/](https://www.eclipse.org/m2e/ "Title") for development.
 
 ##Other Links
-- - -
 * TANPN Website [http://www.tanpn.com](http://www.tanpn.com "Title")
 * TANPN Play [https://play.tanpn.com](https://play.tanpn.com "Title")
 
