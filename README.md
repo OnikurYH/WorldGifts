@@ -1,5 +1,6 @@
 #WorldGifts
 > Let your bukkit auto give player a gift on first join.
+
 This plugin can let your server auto to give gifts to player when they are first to join.
 
 ##Features
