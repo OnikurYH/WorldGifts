@@ -1,6 +1,9 @@
 name: WorldGifts
 main: com.tanpn.worldgifts.WorldGifts
-version: 0.5
+version: 0.6
+author: OnikurChan (TsnYikHei)
+description: Let your bukkit auto give player a gift on join.
+website: http://dev.bukkit.org/bukkit-plugins/worldgifts/
 
 commands:
   worldgifts:
@@ -16,6 +19,7 @@ permissions:
           worldgifts.plugininfo: true
           worldgifts.help: true
           worldgifts.list: true
+          worldgifts.setmaxtimes: true
           worldgifts.put: true
           worldgifts.remove: true
           worldgifts.reload: true
@@ -27,6 +31,9 @@ permissions:
       default: op
   worldgifts.list:
       description: Allows you to see world items
+      default: op
+  worldgifts.setmaxtimes:
+      description: Allows you to set maximum get gift times
       default: op
   worldgifts.put:
       description: Allows you to add item to world

@@ -6,9 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,7 +18,7 @@ public class PlayerSaves
 	private final String FILE_EXTENSION = ".worldgifts";
 	
 	private final WorldGifts plugin;
-	private Map<String, List<String>> data = new HashMap<String, List<String>>();
+	private Map<String, Map<String, Integer>> data = new HashMap<String, Map<String, Integer>>();
 	
 	public PlayerSaves (WorldGifts plugin)
 	{
@@ -31,17 +29,20 @@ public class PlayerSaves
 	{
 		if (!data.containsKey(worldName))
 		{
-			data.put(worldName, new ArrayList<String>());
+			data.put(worldName, new HashMap<String, Integer>());
 		}
-		List<String> players = data.get(worldName);
-		players.add(playerName);
+		Map<String, Integer> players = data.get(worldName);
+		players.put(playerName, (players.containsKey(playerName) ? (players.get(playerName) + 1) : 1));
 		data.put(worldName, players);
 	}
 	
-	public boolean isPlayerAlreadyGetGift (String worldName, String playerName)
+	public boolean isPlayerAlreadyGetGift (String worldName, int maxGetTimes, String playerName)
 	{
 		if (!data.containsKey(worldName)) return false;
-		return data.get(worldName).contains(playerName);
+		if (maxGetTimes == -1) return false;
+		if (!data.get(worldName).containsKey(playerName)) return false;
+		
+		return (data.get(worldName).get(playerName) > maxGetTimes);
 	}
 	
 	public void saveAllMapData ()
@@ -49,13 +50,13 @@ public class PlayerSaves
 		File dataFolder = new File(plugin.getDataFolder(), BASE_FOLDER);
 		if (!dataFolder.exists()) dataFolder.mkdir();
 		
-		for (Entry<String, List<String>> entry : data.entrySet())
+		for (Entry<String, Map<String, Integer>> entry : data.entrySet())
 		{
 			saveMapData(entry.getKey(), entry.getValue());
 		}
 	}
 	
-	public void saveMapData(String fileName, List<String> mapData)
+	public void saveMapData(String fileName, Map<String, Integer> mapData)
 	{
 		try
 		{
@@ -90,14 +91,14 @@ public class PlayerSaves
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<String> loadMapData(String fileName)
+	public Map<String, Integer> loadMapData(String fileName)
 	{
 		try
 		{
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(plugin.getDataFolder() + File.separator + BASE_FOLDER + File.separator + fileName));
 			Object result = ois.readObject();
 			ois.close();
-			return (List<String>) result;
+			return (Map<String, Integer>) result;
 		}
 		catch(Exception e)
 		{

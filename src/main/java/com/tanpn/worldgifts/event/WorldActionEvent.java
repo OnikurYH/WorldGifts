@@ -26,7 +26,10 @@ public class WorldActionEvent implements Listener
     @EventHandler
     public void onPlayerJoin (PlayerJoinEvent event)
     {
-    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(event.getPlayer().getWorld().getName(), event.getPlayer().getName()))
+    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
+    			event.getPlayer().getWorld().getName(),
+    			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
+    			event.getPlayer().getName()))
     	{
     		return;
     	}
@@ -37,7 +40,10 @@ public class WorldActionEvent implements Listener
     @EventHandler
     public void onPlayerChangedWorld (PlayerChangedWorldEvent event)
     {
-    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(event.getPlayer().getWorld().getName(), event.getPlayer().getName()))
+    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
+    			event.getPlayer().getWorld().getName(),
+    			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
+    			event.getPlayer().getName()))
     	{
     		return;
     	}

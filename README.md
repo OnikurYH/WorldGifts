@@ -1,17 +1,19 @@
 #WorldGifts
-> Let your bukkit auto give player a gift on first join.
+> Let your bukkit auto give player a gift on join.
 
-This plugin can let your server auto to give gifts to player when they are first to join.
+This plugin can let your server auto to give gifts to player when they are join.
 
 ##Features
 * Easy to install and use
 * Multi world support
+* Support writing books
 * Work with some lore edit plugins (e.g. Lore, CrackShot)
 
 ##Commands
     /worldgifts - About WorldGifts plugin
     /worldgifts help - WorldGifts Help
     /worldgifts list <world> - List all gift on this world
+    /worldgifts setmaxtimes <world> <max get times> - Set maximum get gift times (-1 is infinitely)
     /worldgifts put <world> - Put your hand item to the world
     /worldgifts remove <world> <item_index> - Remove a item from world
     /worldgifts reload - Reload this plugin
@@ -21,6 +23,7 @@ This plugin can let your server auto to give gifts to player when they are first
     worldgifts.plugininfo - Allows you to see this plugin info
     worldgifts.help - Allows you to see this plugin help
     worldgifts.list - Allows you to see world items
+    worldgifts.setmaxtimes - Allows you to set maximum get gift times
     worldgifts.put - Allows you to add item to world
     worldgifts.remove - Allows you to remove item from world
     worldgifts.reload - Allows you to reload this plugin
