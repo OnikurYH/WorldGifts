@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tanpn</groupId>
   <artifactId>WorldGifts</artifactId>
-  <version>0.6</version>
+  <version>0.7</version>
   <build>
       <plugins>
           <plugin>
@@ -25,7 +25,7 @@
        <dependency>
            <groupId>org.bukkit</groupId>
            <artifactId>bukkit</artifactId>
-           <version>1.7.2-R0.2-SNAPSHOT</version>
+           <version>1.7.5-R0.1-SNAPSHOT</version>
            <type>jar</type>
            <scope>provided</scope>
        </dependency>

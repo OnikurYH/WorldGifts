@@ -19,9 +19,9 @@ public class WorldGifts extends JavaPlugin
     public void onEnable()
 	{
 		this.saveDefaultConfig();
-		phrase = new FConfig(this, "phrase.yml");
+		phrase = new FConfig(this, "phrase.yml", "");
 		phrase.saveDefaultConfig();
-		gifts = new FConfig(this, "gifts.yml");
+		gifts = new FConfig(this, "gifts.yml", "");
 		gifts.saveDefaultConfig();
 		
 		this.getCommand("worldgifts").setExecutor(new CommandHandler(this));
@@ -41,6 +41,8 @@ public class WorldGifts extends JavaPlugin
     {
     	gifts.saveConfig();
     	playerSaves.saveAllMapData ();
+    	this.getConfig().options().header("WorldGift Config File");
+    	this.saveConfig();
     	Msg.sendConsole("&cStop !");
     }
     

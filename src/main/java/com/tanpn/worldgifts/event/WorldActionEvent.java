@@ -29,7 +29,7 @@ public class WorldActionEvent implements Listener
     	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
     			event.getPlayer().getWorld().getName(),
     			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
-    			event.getPlayer().getName()))
+    			event.getPlayer().getUniqueId()))
     	{
     		return;
     	}
@@ -40,10 +40,12 @@ public class WorldActionEvent implements Listener
     @EventHandler
     public void onPlayerChangedWorld (PlayerChangedWorldEvent event)
     {
+    	System.out.println("Player change world");
+    	
     	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
     			event.getPlayer().getWorld().getName(),
     			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
-    			event.getPlayer().getName()))
+    			event.getPlayer().getUniqueId()))
     	{
     		return;
     	}
@@ -62,7 +64,7 @@ public class WorldActionEvent implements Listener
     				plugin, 
     				new AddItemToPlayer(player, items.toArray(new ItemStack[items.size()])),
     				5);
-    		plugin.getPlayerSaves().addPlayer(worldName, player.getName());
+    		plugin.getPlayerSaves().addPlayer(worldName, player.getUniqueId());
     	}
     }
 }

@@ -1,0 +1,3 @@
+# WorldGift Config File ########################
+Gift_Permission_Per_World: false
+Gift_Permission_Per_World_Op_Override: true

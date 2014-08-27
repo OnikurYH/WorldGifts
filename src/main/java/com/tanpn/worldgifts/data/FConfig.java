@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.tanpn.worldgifts.WorldGifts;
@@ -16,11 +17,13 @@ public class FConfig
 	
 	private FileConfiguration config = null;
 	private File configFile = null;
+	private String header;
 	
-	public FConfig (WorldGifts plugin, String fileName)
+	public FConfig (WorldGifts plugin, String fileName, String header)
 	{
 		this.plugin = plugin;
 		this.fileName = fileName;
+		this.header = header;
 	}
 	
 	public void reloadConfig()
@@ -56,6 +59,8 @@ public class FConfig
 	    }
 	    try
 	    {
+	    	FileConfigurationOptions opt = config.options();
+			opt.header(header);
 	        getConfig().save(configFile);
 	    }
 	    catch (IOException ex) {}

@@ -75,6 +75,22 @@ public class CommandHandler implements CommandExecutor
 					
 					cmd_setmaxtimes (sender, args[1], Integer.parseInt(args[2]));
 					break;
+				
+				case "resetplayer":
+					if (!sender.hasPermission("worldgifts.resetplayer"))
+					{
+						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						return true;
+					}
+					if (args.length < 3)
+					{
+						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						return true;
+					}
+					
+					player = (Player) sender;
+					cmd_resetplayer (player, args[1], args[2]);
+					break;
 					
 				case "put":
 					if (!(sender instanceof Player))
@@ -152,6 +168,7 @@ public class CommandHandler implements CommandExecutor
 		Msg.send(sender, "&f/worldgifts help &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Help"));
 		Msg.send(sender, "&f/worldgifts list <world> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_List"));
 		Msg.send(sender, "&f/worldgifts setmaxtimes <world> <max get times> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_SetMaxTimes"));
+		Msg.send(sender, "&f/worldgifts resetplayer <world> <player name> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Reset_Player"));
 		Msg.send(sender, "&f/worldgifts put <world> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Put"));
 		Msg.send(sender, "&f/worldgifts remove <world> <item index> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Remove"));
 		Msg.send(sender, "&f/worldgifts reload &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Reload"));
@@ -166,6 +183,12 @@ public class CommandHandler implements CommandExecutor
 	private void cmd_setmaxtimes (CommandSender sender, String worldName, int maxGetTimes)
 	{
 		plugin.getWorldManager().setMaxGetTimes(sender, worldName, maxGetTimes);
+	}
+	
+	@SuppressWarnings("deprecation")
+	private void cmd_resetplayer (CommandSender sender, String worldName, String playerName)
+	{
+		plugin.getPlayerSaves().resetPlayer(sender , worldName, plugin.getServer().getPlayer(playerName).getUniqueId());
 	}
 	
 	private void cmd_put (Player player, String worldName)

@@ -9,40 +9,72 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.UUID;
+
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import com.tanpn.worldgifts.WorldGifts;
+import com.tanpn.worldgifts.util.Msg;
 
 public class PlayerSaves
 {
 	private final String BASE_FOLDER = "data";
 	private final String FILE_EXTENSION = ".worldgifts";
+	private final String PRE_WORLD_BASE_PREM = "worldgifts.world.";
 	
 	private final WorldGifts plugin;
-	private Map<String, Map<String, Integer>> data = new HashMap<String, Map<String, Integer>>();
+	private Map<String, Map<UUID, Integer>> data = new HashMap<String, Map<UUID, Integer>>();
 	
 	public PlayerSaves (WorldGifts plugin)
 	{
 		this.plugin = plugin;
 	}
 	
-	public void addPlayer (String worldName, String playerName)
+	public void addPlayer (String worldName, UUID pUUID)
 	{
 		if (!data.containsKey(worldName))
 		{
-			data.put(worldName, new HashMap<String, Integer>());
+			data.put(worldName, new HashMap<UUID, Integer>());
 		}
-		Map<String, Integer> players = data.get(worldName);
-		players.put(playerName, (players.containsKey(playerName) ? (players.get(playerName) + 1) : 1));
+		Map<UUID, Integer> players = data.get(worldName);
+		players.put(pUUID, (players.containsKey(pUUID) ? (players.get(pUUID) + 1) : 1));
 		data.put(worldName, players);
 	}
 	
-	public boolean isPlayerAlreadyGetGift (String worldName, int maxGetTimes, String playerName)
+	public void resetPlayer (CommandSender sender, String worldName, UUID pUUID)
+	{
+		if (!data.containsKey(worldName))
+		{
+			Msg.send(sender, plugin.getPhrase().getConfig().getString("World_No_Data"));
+			return;
+		}
+		Map<UUID, Integer> players = data.get(worldName);
+		players.put(pUUID, 0);
+		data.put(worldName, players);
+		Msg.send(sender, plugin.getPhrase().getConfig().getString("Reset_Player"));
+	}
+	
+	public boolean isPlayerAlreadyGetGift (String worldName, int maxGetTimes, UUID pUUID)
 	{
 		if (!data.containsKey(worldName)) return false;
 		if (maxGetTimes == -1) return false;
-		if (!data.get(worldName).containsKey(playerName)) return false;
+		if (!data.get(worldName).containsKey(pUUID)) return false;
+		if (plugin.getConfig().getBoolean("Gift_Permission_Per_World"))
+		{
+			Player p = plugin.getServer().getPlayer(pUUID);
+			if (p.hasPermission(PRE_WORLD_BASE_PREM + worldName) ||
+				(plugin.getConfig().getBoolean("Gift_Permission_Per_World_Op_Override") && p.isOp()))
+			{
+				return (data.get(worldName).get(pUUID) >= maxGetTimes);
+			}
+			else
+			{
+				return true;
+			}
+		}
 		
-		return (data.get(worldName).get(playerName) > maxGetTimes);
+		return (data.get(worldName).get(pUUID) >= maxGetTimes);
 	}
 	
 	public void saveAllMapData ()
@@ -50,13 +82,13 @@ public class PlayerSaves
 		File dataFolder = new File(plugin.getDataFolder(), BASE_FOLDER);
 		if (!dataFolder.exists()) dataFolder.mkdir();
 		
-		for (Entry<String, Map<String, Integer>> entry : data.entrySet())
+		for (Entry<String, Map<UUID, Integer>> entry : data.entrySet())
 		{
 			saveMapData(entry.getKey(), entry.getValue());
 		}
 	}
 	
-	public void saveMapData(String fileName, Map<String, Integer> mapData)
+	public void saveMapData(String fileName, Map<UUID, Integer> mapData)
 	{
 		try
 		{
@@ -91,14 +123,14 @@ public class PlayerSaves
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String, Integer> loadMapData(String fileName)
+	public Map<UUID, Integer> loadMapData(String fileName)
 	{
 		try
 		{
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(plugin.getDataFolder() + File.separator + BASE_FOLDER + File.separator + fileName));
 			Object result = ois.readObject();
 			ois.close();
-			return (Map<String, Integer>) result;
+			return (Map<UUID, Integer>) result;
 		}
 		catch(Exception e)
 		{
