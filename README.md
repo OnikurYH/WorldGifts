@@ -6,6 +6,9 @@ This plugin can let your server auto to give gifts to player when they are join.
 ##Features
 * Easy to install and use
 * Multi world support
+* Set the gift limitation per world
+* Set gift give permission per world
+* You can custome the plugin massage (Edit phrase.yml)
 * Support writing books
 * Work with some lore edit plugins (e.g. Lore, CrackShot)
 
@@ -14,6 +17,7 @@ This plugin can let your server auto to give gifts to player when they are join.
     /worldgifts help - WorldGifts Help
     /worldgifts list <world> - List all gift on this world
     /worldgifts setmaxtimes <world> <max get times> - Set maximum get gift times (-1 is infinitely)
+    /worldgifts resetplayer <world> <player name> - Reset a player gift status
     /worldgifts put <world> - Put your hand item to the world
     /worldgifts remove <world> <item_index> - Remove a item from world
     /worldgifts reload - Reload this plugin
@@ -24,9 +28,14 @@ This plugin can let your server auto to give gifts to player when they are join.
     worldgifts.help - Allows you to see this plugin help
     worldgifts.list - Allows you to see world items
     worldgifts.setmaxtimes - Allows you to set maximum get gift times
+    worldgifts.resetplayer - Allows you to reset a player gift status
     worldgifts.put - Allows you to add item to world
     worldgifts.remove - Allows you to remove item from world
     worldgifts.reload - Allows you to reload this plugin
+    
+**World Premission**
+    
+    worldgifts.world.<world name>
     
 ##Examples
 You have 2 world in the server -- mainworld and activity.
@@ -51,6 +60,7 @@ m2e Maven [https://www.eclipse.org/m2e/](https://www.eclipse.org/m2e/ "Title") f
 ##Other Links
 * TANPN Website [http://www.tanpn.com](http://www.tanpn.com "Title")
 * TANPN Play [https://play.tanpn.com](https://play.tanpn.com "Title")
+* TANPN Resources [https://rsrc.tanpn.com](https://rsrc.tanpn.com "Title")
 
 - - -
 WorldGifts is open source
