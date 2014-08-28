@@ -2,6 +2,7 @@ package com.tanpn.worldgifts;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.tanpn.worldgifts.command.CommandHandler;
 import com.tanpn.worldgifts.config.FConfig;
 import com.tanpn.worldgifts.config.MainConfig;
 import com.tanpn.worldgifts.config.PhraseConfig;
