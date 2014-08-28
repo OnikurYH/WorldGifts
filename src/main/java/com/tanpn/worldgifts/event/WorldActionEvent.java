@@ -10,25 +10,23 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.tanpn.worldgifts.WorldGifts;
+import com.tanpn.worldgifts.config.PhraseConfig;
 import com.tanpn.worldgifts.data.AddItemToPlayer;
 import com.tanpn.worldgifts.util.Msg;
 
 public class WorldActionEvent implements Listener
 {
-	private final WorldGifts plugin;
-	 
-    public WorldActionEvent(WorldGifts plugin)
+    public WorldActionEvent()
     {
-        this.plugin = plugin;
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    	WorldGifts.getSelf().getServer().getPluginManager().registerEvents(this, WorldGifts.getSelf());
     }
     
     @EventHandler
     public void onPlayerJoin (PlayerJoinEvent event)
     {
-    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
+    	if (WorldGifts.getSelf().getPlayerSaves().isPlayerAlreadyGetGift(
     			event.getPlayer().getWorld().getName(),
-    			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
+    			WorldGifts.getSelf().getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
     			event.getPlayer().getUniqueId()))
     	{
     		return;
@@ -40,11 +38,9 @@ public class WorldActionEvent implements Listener
     @EventHandler
     public void onPlayerChangedWorld (PlayerChangedWorldEvent event)
     {
-    	System.out.println("Player change world");
-    	
-    	if (plugin.getPlayerSaves().isPlayerAlreadyGetGift(
+    	if (WorldGifts.getSelf().getPlayerSaves().isPlayerAlreadyGetGift(
     			event.getPlayer().getWorld().getName(),
-    			plugin.getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
+    			WorldGifts.getSelf().getWorldManager().getMaxGetTimes(event.getPlayer().getWorld().getName()),
     			event.getPlayer().getUniqueId()))
     	{
     		return;
@@ -56,15 +52,15 @@ public class WorldActionEvent implements Listener
     private void giveItemToPlayer (Player player, String worldName)
     {
     	List<ItemStack> items = null;
-    	if ((items = plugin.getWorldManager().getItems(worldName)) != null)
+    	if ((items = WorldGifts.getSelf().getWorldManager().getItems(worldName)) != null)
     	{
-    		Msg.send(player, plugin.getPhrase().getConfig().getString("GET_GIFT"));
+    		Msg.send(player, PhraseConfig.GET_GIFT.val());
     		
     		player.getServer().getScheduler().scheduleSyncDelayedTask(
-    				plugin, 
+    				WorldGifts.getSelf(), 
     				new AddItemToPlayer(player, items.toArray(new ItemStack[items.size()])),
     				5);
-    		plugin.getPlayerSaves().addPlayer(worldName, player.getUniqueId());
+    		WorldGifts.getSelf().getPlayerSaves().addPlayer(worldName, player.getUniqueId());
     	}
     }
 }

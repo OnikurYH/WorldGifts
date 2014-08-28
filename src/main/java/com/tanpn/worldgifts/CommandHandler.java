@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.tanpn.worldgifts.config.PhraseConfig;
 import com.tanpn.worldgifts.util.Msg;
 
 public class CommandHandler implements CommandExecutor
@@ -23,7 +24,7 @@ public class CommandHandler implements CommandExecutor
 		{
 			if (!sender.hasPermission("worldgifts.plugininfo"))
 			{
-				Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+				Msg.send(sender, PhraseConfig.No_Premission.val());
 				return true;
 			}
 			
@@ -39,7 +40,7 @@ public class CommandHandler implements CommandExecutor
 				case "?":
 					if (!sender.hasPermission("worldgifts.help"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					
@@ -49,12 +50,12 @@ public class CommandHandler implements CommandExecutor
 				case "list":
 					if (!sender.hasPermission("worldgifts.list"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					if (args.length < 2)
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						Msg.send(sender, PhraseConfig.Args_Incorrect.val());
 						return true;
 					}
 					
@@ -64,12 +65,12 @@ public class CommandHandler implements CommandExecutor
 				case "setmaxtimes":
 					if (!sender.hasPermission("worldgifts.setmaxtimes"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					if (args.length < 3)
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						Msg.send(sender, PhraseConfig.Args_Incorrect.val());
 						return true;
 					}
 					
@@ -79,12 +80,12 @@ public class CommandHandler implements CommandExecutor
 				case "resetplayer":
 					if (!sender.hasPermission("worldgifts.resetplayer"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					if (args.length < 3)
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						Msg.send(sender, PhraseConfig.Args_Incorrect.val());
 						return true;
 					}
 					
@@ -95,17 +96,17 @@ public class CommandHandler implements CommandExecutor
 				case "put":
 					if (!(sender instanceof Player))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Only_Player_Cmd"));
+						Msg.send(sender, PhraseConfig.Only_Player_Cmd.val());
 						return true;
 					}
 					if (!sender.hasPermission("worldgifts.put"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					if (args.length < 2)
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						Msg.send(sender, PhraseConfig.Args_Incorrect.val());
 						return true;
 					}
 					
@@ -116,17 +117,17 @@ public class CommandHandler implements CommandExecutor
 				case "remove":
 					if (!(sender instanceof Player))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Only_Player_Cmd"));
+						Msg.send(sender, PhraseConfig.Only_Player_Cmd.val());
 						return true;
 					}
 					if (!sender.hasPermission("worldgifts.remove"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					if (args.length < 3)
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("Args_Incorrect"));
+						Msg.send(sender, PhraseConfig.Args_Incorrect.val());
 						return true;
 					}
 					
@@ -137,7 +138,7 @@ public class CommandHandler implements CommandExecutor
 				case "reload":
 					if (!sender.hasPermission("worldgifts.reload"))
 					{
-						Msg.send(sender, plugin.getPhrase().getConfig().getString("No_Premission"));
+						Msg.send(sender, PhraseConfig.No_Premission.val());
 						return true;
 					}
 					
@@ -145,7 +146,7 @@ public class CommandHandler implements CommandExecutor
 					break;
 					
 				default:
-					Msg.send(sender, plugin.getPhrase().getConfig().getString("Command_Not_Find"));
+					Msg.send(sender, PhraseConfig.Command_Not_Find.val());
 					break;
 			}
 		}
@@ -164,14 +165,14 @@ public class CommandHandler implements CommandExecutor
 	private void cmd_help (CommandSender sender)
 	{
 		Msg.send(sender, "&b\u2592\u2592\u2592\u2592\u2592 WorldGifts Help \u2592\u2592\u2592\u2592\u2592");
-		Msg.send(sender, "&f/worldgifts &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_PluginInfo"));
-		Msg.send(sender, "&f/worldgifts help &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Help"));
-		Msg.send(sender, "&f/worldgifts list <world> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_List"));
-		Msg.send(sender, "&f/worldgifts setmaxtimes <world> <max get times> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_SetMaxTimes"));
-		Msg.send(sender, "&f/worldgifts resetplayer <world> <player name> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Reset_Player"));
-		Msg.send(sender, "&f/worldgifts put <world> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Put"));
-		Msg.send(sender, "&f/worldgifts remove <world> <item index> &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Remove"));
-		Msg.send(sender, "&f/worldgifts reload &7" + plugin.getPhrase().getConfig().getString("Help.Cmd_Reload"));
+		Msg.send(sender, "&f/worldgifts &7" + PhraseConfig.Help__Cmd_PluginInfo.val());
+		Msg.send(sender, "&f/worldgifts help &7" + PhraseConfig.Help__Cmd_Help.val());
+		Msg.send(sender, "&f/worldgifts list <world> &7" + PhraseConfig.Help__Cmd_List.val());
+		Msg.send(sender, "&f/worldgifts setmaxtimes <world> <max get times> &7" + PhraseConfig.Help__Cmd_SetMaxTimes.val());
+		Msg.send(sender, "&f/worldgifts resetplayer <world> <player name> &7" + PhraseConfig.Help__Cmd_Reset_Player.val());
+		Msg.send(sender, "&f/worldgifts put <world> &7" + PhraseConfig.Help__Cmd_Put.val());
+		Msg.send(sender, "&f/worldgifts remove <world> <item index> &7" + PhraseConfig.Help__Cmd_Remove.val());
+		Msg.send(sender, "&f/worldgifts reload &7" + PhraseConfig.Help__Cmd_Reload.val());
 		Msg.send(sender, "&b\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592");
 	}
 	
@@ -204,8 +205,8 @@ public class CommandHandler implements CommandExecutor
 	private void cmd_reload (CommandSender sender)
 	{
 		plugin.reloadConfig();
-		plugin.getPhrase().reloadConfig();
+		PhraseConfig.reloadConfig();
 		
-		Msg.send(sender, plugin.getPhrase().getConfig().getString("Plugin_Reloaded"));
+		Msg.send(sender, PhraseConfig.Plugin_Reloaded.val());
 	}
 }

@@ -1,4 +1,4 @@
-package com.tanpn.worldgifts.data;
+package com.tanpn.worldgifts.config;
 
 import java.io.File;
 import java.io.IOException;

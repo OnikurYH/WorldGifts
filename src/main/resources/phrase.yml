@@ -3,8 +3,6 @@ No_Premission: "&cYou don't have this permission!"
 Args_Incorrect: "&cPlease type ''/worldgifts help'' to see how to use this command."
 Only_Player_Cmd: "&cThis command only can player to use."
 
-Cannot_Add_Air: "&cCannot add air to gift!"
-
 Plugin_Reloaded: "&aPlugin reloaded! (Only reloaded phrase.yml)"
 
 GET_GIFT: "&dWelcome! Here is you gift!"
@@ -15,6 +13,7 @@ Max_Get_Times_Cannot_Zero: "&cCannot set the maximum get gift times is zero!"
 Reset_Player: "&aThis player gift status has been reset!"
 Item_Added: "&aItem successful to added!"
 Item_Remove: "&aItem successful to &cremove&a!"
+Cannot_Add_Air: "&cCannot add air to gift!"
 World_No_Data: "&cThis world haven't added to this plugin!"
 World_No_Item: "&cThis world haven't added items!"
 

@@ -10,17 +10,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.tanpn.worldgifts.WorldGifts;
+import com.tanpn.worldgifts.config.FConfig;
+import com.tanpn.worldgifts.config.PhraseConfig;
 import com.tanpn.worldgifts.util.Msg;
 
 public class WorldManager
 {
-	private final WorldGifts plugin;
 	private final FileConfiguration gifts;
 	
-	public WorldManager (WorldGifts plugin, FConfig gifts)
+	public WorldManager (FConfig gifts)
 	{
-		this.plugin = plugin;
-		this.gifts = plugin.getGifts().getConfig();
+		this.gifts = WorldGifts.getSelf().getGifts().getConfig();
 	}
 	
 	public boolean isWorldHaveData (String worldName)
@@ -47,16 +47,16 @@ public class WorldManager
 		if (maxGetTimes <= -1)
 		{
 			maxGetTimes = -1;
-			Msg.send(sender, plugin.getPhrase().getConfig().getString("Max_Get_Times_Set_Infinite"));
+			Msg.send(sender, PhraseConfig.Max_Get_Times_Set_Infinite.val());
 		}
 		else if (maxGetTimes == 0)
 		{
-			Msg.send(sender, plugin.getPhrase().getConfig().getString("Max_Get_Times_Cannot_Zero"));
+			Msg.send(sender, PhraseConfig.Max_Get_Times_Cannot_Zero.val());
 			return;
 		}
 		else
 		{
-			Msg.send(sender, plugin.getPhrase().getConfig().getString("Max_Get_Times_Set"));
+			Msg.send(sender, PhraseConfig.Max_Get_Times_Set.val());
 		}
 		
 		gifts.set("Worlds." + worldName + ".Max_Get_Times", maxGetTimes);
@@ -83,7 +83,7 @@ public class WorldManager
 	{
 		if (item.getType() == Material.AIR)
 		{
-			Msg.send(player, plugin.getPhrase().getConfig().getString("Cannot_Add_Air"));
+			Msg.send(player, PhraseConfig.Cannot_Add_Air.val());
 			return;
 		}
 		
@@ -99,7 +99,7 @@ public class WorldManager
 		items.add(item);
 		gifts.set("Worlds." + worldName + ".Gifts", items);
 		
-		Msg.send(player, plugin.getPhrase().getConfig().getString("Item_Added"));
+		Msg.send(player, PhraseConfig.Item_Added.val());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -109,7 +109,7 @@ public class WorldManager
 		
 		if (!isWorldHaveData(worldName))
 		{
-			Msg.send(player, plugin.getPhrase().getConfig().getString("World_No_Data"));
+			Msg.send(player, PhraseConfig.World_No_Data.val());
 			return;
 		}
 		if (((List<ItemStack>) gifts.getList("Worlds." + worldName + ".Gifts")).size() < (itemIndex-1))
@@ -121,7 +121,7 @@ public class WorldManager
 		items.remove(itemIndex-1);
 		gifts.set("Worlds." + worldName + ".Gifts", items);
 		
-		Msg.send(player, plugin.getPhrase().getConfig().getString("Item_Remove"));
+		Msg.send(player, PhraseConfig.Item_Remove.val());
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -148,12 +148,12 @@ public class WorldManager
 		
 		if (!isWorldHaveData(worldName))
 		{
-			Msg.send(sender, plugin.getPhrase().getConfig().getString("World_No_Data"));
+			Msg.send(sender, PhraseConfig.World_No_Data.val());
 			return;
 		}
 		if (((List<ItemStack>) gifts.getList("Worlds." + worldName + ".Gifts")).size() <= 0)
 		{
-			Msg.send(sender, plugin.getPhrase().getConfig().getString("World_No_Item"));
+			Msg.send(sender, PhraseConfig.World_No_Item.val());
 			return;
 		}
 		
