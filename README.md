@@ -57,10 +57,9 @@ We are use Eclipse [https://www.eclipse.org](https://www.eclipse.org "Title") an
 
 m2e Maven [https://www.eclipse.org/m2e/](https://www.eclipse.org/m2e/ "Title") for development.
 
-##Other Links
-* TANPN Website [http://www.tanpn.com](http://www.tanpn.com "Title")
-* TANPN Play [https://play.tanpn.com](https://play.tanpn.com "Title")
-* TANPN Resources [https://rsrc.tanpn.com](https://rsrc.tanpn.com "Title")
+##Download
+* Bukkit Dev (English) [http://dev.bukkit.org/bukkit-plugins/worldgifts/](http://dev.bukkit.org/bukkit-plugins/worldgifts/ "Title")
+* TANPN Resources (Chinese) [https://rsrc.tanpn.com/resources/worldgifts.4/](https://rsrc.tanpn.com/resources/worldgifts.4/ "Title")
 
 - - -
 WorldGifts is open source
